@@ -1,14 +1,20 @@
 package com.applsh1205.linkstore.link
 
 import androidx.recyclerview.widget.RecyclerView
-import com.applsh1205.linkstore.database.Link
 import com.applsh1205.linkstore.databinding.ListItemLinkBinding
 
 class LinkViewHolder(
     private val binding: ListItemLinkBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: Link) {
+    init {
+        binding.root.setOnClickListener {
+            val currentLink = binding.link ?: return@setOnClickListener
+            currentLink.onClick()
+        }
+    }
+
+    fun bind(item: LinkItem) {
         binding.link = item
         binding.executePendingBindings()
     }

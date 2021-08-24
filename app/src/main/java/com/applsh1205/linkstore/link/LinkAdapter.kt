@@ -4,10 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import com.applsh1205.linkstore.database.Link
 import com.applsh1205.linkstore.databinding.ListItemLinkBinding
 
-class LinkAdapter : PagingDataAdapter<Link, LinkViewHolder>(LinkDiffCallback()) {
+class LinkAdapter : PagingDataAdapter<LinkItem, LinkViewHolder>(LinkDiffCallback()) {
 
     override fun onBindViewHolder(holder: LinkViewHolder, position: Int) {
         val item = getItem(position)
@@ -26,12 +25,12 @@ class LinkAdapter : PagingDataAdapter<Link, LinkViewHolder>(LinkDiffCallback()) 
         )
     }
 
-    private class LinkDiffCallback : DiffUtil.ItemCallback<Link>() {
-        override fun areItemsTheSame(oldItem: Link, newItem: Link): Boolean {
+    private class LinkDiffCallback : DiffUtil.ItemCallback<LinkItem>() {
+        override fun areItemsTheSame(oldItem: LinkItem, newItem: LinkItem): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Link, newItem: Link): Boolean {
+        override fun areContentsTheSame(oldItem: LinkItem, newItem: LinkItem): Boolean {
             return oldItem == newItem
         }
     }

@@ -3,21 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="link"
-            type="com.applsh1205.linkstore.database.Link" />
+            type="com.applsh1205.linkstore.link.LinkItem" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
             android:id="@+id/link_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@{link.name}"
             android:textSize="16sp"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,6 +28,7 @@
             android:id="@+id/link_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@{link.url}"
             android:textSize="12sp"
             app:layout_constraintTop_toBottomOf="@id/link_name" />
 
