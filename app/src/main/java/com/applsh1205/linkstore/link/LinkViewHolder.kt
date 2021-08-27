@@ -8,7 +8,7 @@ class LinkViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     init {
-        binding.root.setOnClickListener {
+        binding.listItemCardView.setOnClickListener {
             val currentLink = binding.link ?: return@setOnClickListener
             currentLink.onClick()
         }

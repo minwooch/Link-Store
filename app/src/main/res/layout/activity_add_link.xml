@@ -19,6 +19,7 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:gravity="center"
+            android:paddingHorizontal="8dp"
             android:text="@string/store_link"
             android:textSize="32dp"
             app:layout_constraintStart_toEndOf="@id/add_link_cancel"
@@ -28,6 +29,7 @@
             android:id="@+id/add_link_cancel"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:background="@drawable/ic_baseline_arrow_back_24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,6 +37,7 @@
             android:id="@+id/add_link_done"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:background="@drawable/ic_baseline_check_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
