@@ -12,6 +12,12 @@ class LinkViewHolder(
             val currentLink = binding.link ?: return@setOnClickListener
             currentLink.onClick()
         }
+
+        binding.listItemCardView.setOnLongClickListener {
+            val currentLink = binding.link ?: return@setOnLongClickListener true
+            currentLink.onLongClick()
+            true
+        }
     }
 
     fun bind(item: LinkItem) {

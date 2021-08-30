@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.applsh1205.linkstore.R
 import com.applsh1205.linkstore.databinding.ActivityListBinding
+import com.applsh1205.linkstore.edit_link.EditLinkActivity
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -39,6 +40,15 @@ class ListActivity : AppCompatActivity() {
                 val intent = Intent(Intent.ACTION_VIEW).setData(Uri.parse(it))
                 startActivity(intent)
                 viewModel.clearBrowserLink()
+            }
+        }
+
+        viewModel.editLink.observe(this) {
+            if (it.isNotEmpty()) {
+                val intent = Intent(this, EditLinkActivity::class.java)
+                intent.putExtra("id", it)
+                startActivity(intent)
+                viewModel.clearEditLink()
             }
         }
 

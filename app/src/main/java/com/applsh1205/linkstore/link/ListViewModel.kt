@@ -12,6 +12,8 @@ class ListViewModel : ViewModel() {
 
     private val _browserLink = MutableLiveData<String>("")
     val browserLink: LiveData<String> = _browserLink
+    private val _editLink = MutableLiveData<String>("")
+    val editLink: LiveData<String> = _editLink
 
     val links = Pager(
         config = PagingConfig(pageSize = 30)
@@ -28,6 +30,9 @@ class ListViewModel : ViewModel() {
             item.onClick = {
                 onClickLinkItem(it.url)
             }
+            item.onLongClick = {
+                onLongClickLinkItem(it.id)
+            }
             item
         }
     }.cachedIn(viewModelScope)
@@ -38,6 +43,14 @@ class ListViewModel : ViewModel() {
 
     fun clearBrowserLink() {
         _browserLink.value = ""
+    }
+
+    private fun onLongClickLinkItem(id: String) {
+        _editLink.value = id
+    }
+
+    fun clearEditLink() {
+        _editLink.value = ""
     }
 
 }

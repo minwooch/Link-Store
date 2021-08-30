@@ -20,10 +20,23 @@ interface LinkDao {
         insert(link)
     }
 
+    suspend fun update(id: String, url: String, name: String, description: String) {
+        val link = Link(
+            id,
+            url,
+            name,
+            description
+        )
+        insert(link)
+    }
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(link: Link)
 
     @Query("SELECT * FROM links ORDER BY name")
     fun getLinks(): PagingSource<Int, Link>
+
+    @Query("SELECT * FROM links WHERE id = :id")
+    fun getLink(id: String): Link
 
 }

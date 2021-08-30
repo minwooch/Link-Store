@@ -37,7 +37,13 @@
             android:name=".add_link.AddLinkActivity"
 
             android:excludeFromRecents="true"
-            android:exported="true"
+            android:launchMode="singleInstance"
+            android:noHistory="true" />
+
+        <activity
+            android:name=".edit_link.EditLinkActivity"
+
+            android:excludeFromRecents="true"
             android:launchMode="singleInstance"
             android:noHistory="true" />
     </application>

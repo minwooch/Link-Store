@@ -7,4 +7,5 @@ data class LinkItem(
     val description: String,
 ) {
     var onClick: () -> Unit = {}
+    var onLongClick: () -> Unit = {}
 }
