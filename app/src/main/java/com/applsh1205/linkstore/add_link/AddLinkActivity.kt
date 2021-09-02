@@ -8,9 +8,13 @@ import com.applsh1205.linkstore.R
 import com.applsh1205.linkstore.databinding.ActivityAddLinkBinding
 
 class AddLinkActivity : AppCompatActivity() {
-    lateinit var binding: ActivityAddLinkBinding
+    private lateinit var binding: ActivityAddLinkBinding
 
-    val viewModel: AddLinkViewModel by viewModels()
+    private lateinit var url: String
+
+    private val viewModel: AddLinkViewModel by viewModels {
+        AddLinkViewModelProvider(url)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +26,7 @@ class AddLinkActivity : AppCompatActivity() {
             return
         }
 
-        viewModel.updateLink(url)
+        this.url = url
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_link)
         binding.lifecycleOwner = this

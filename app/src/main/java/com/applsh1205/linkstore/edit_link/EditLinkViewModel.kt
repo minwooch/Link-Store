@@ -8,13 +8,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class EditLinkViewModel : ViewModel() {
+class EditLinkViewModel(id: String) : ViewModel() {
     private val _linkId = MutableLiveData<String>("")
     val url = MutableLiveData<String>("")
     val name = MutableLiveData<String>("")
     val finish = MutableLiveData<Boolean>(false)
 
-    fun updateLinkId(id: String) {
+    init {
         _linkId.value = id
         viewModelScope.launch {
             val link = withContext(Dispatchers.IO) {

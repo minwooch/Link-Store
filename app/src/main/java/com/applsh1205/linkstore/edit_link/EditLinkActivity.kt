@@ -10,7 +10,11 @@ import com.applsh1205.linkstore.databinding.ActivityEditLinkBinding
 class EditLinkActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditLinkBinding
 
-    private val viewModel: EditLinkViewModel by viewModels()
+    private lateinit var id: String
+
+    private val viewModel: EditLinkViewModel by viewModels {
+        EditLinkViewModelFactory(id)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +26,7 @@ class EditLinkActivity : AppCompatActivity() {
             return
         }
 
-        viewModel.updateLinkId(id)
+        this.id = id
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_link)
         binding.lifecycleOwner = this

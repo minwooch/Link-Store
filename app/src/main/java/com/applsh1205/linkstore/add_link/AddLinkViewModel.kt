@@ -9,12 +9,12 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.jsoup.Jsoup
 
-class AddLinkViewModel : ViewModel() {
+class AddLinkViewModel(url: String) : ViewModel() {
     val link = MutableLiveData<String>("")
     val name = MutableLiveData<String>("")
     val finish = MutableLiveData<Boolean>(false)
 
-    fun updateLink(url: String) {
+    init {
         link.value = url
         viewModelScope.launch {
             val linkName = withContext(Dispatchers.IO) {
