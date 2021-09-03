@@ -36,16 +36,12 @@
         <activity
             android:name=".add_link.AddLinkActivity"
 
-            android:excludeFromRecents="true"
-            android:launchMode="singleInstance"
-            android:noHistory="true" />
+            android:launchMode="singleInstance"/>
 
         <activity
             android:name=".edit_link.EditLinkActivity"
 
-            android:excludeFromRecents="true"
-            android:launchMode="singleInstance"
-            android:noHistory="true" />
+            android:launchMode="singleInstance" />
     </application>
 
 </manifest>
