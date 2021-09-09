@@ -1,6 +1,7 @@
 package com.applsh1205.linkstore.edit_link
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.applsh1205.linkstore.database.AppDatabase
@@ -8,20 +9,25 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class EditLinkViewModel(id: String) : ViewModel() {
+class EditLinkViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel() {
     private val _linkId = MutableLiveData<String>("")
     val url = MutableLiveData<String>("")
     val name = MutableLiveData<String>("")
     val finish = MutableLiveData<Boolean>(false)
 
     init {
-        _linkId.value = id
-        viewModelScope.launch {
-            val link = withContext(Dispatchers.IO) {
-                AppDatabase.getInstance().linkDao().getLink(id)
+        val id = savedStateHandle.get<String>("id")
+        if (id == null) {
+            finish.value = true
+        } else {
+            _linkId.value = id
+            viewModelScope.launch {
+                val link = withContext(Dispatchers.IO) {
+                    AppDatabase.getInstance().linkDao().getLink(id)
+                }
+                url.value = link.url
+                name.value = link.name
             }
-            url.value = link.url
-            name.value = link.name
         }
     }
 
