@@ -1,6 +1,7 @@
 package com.applsh1205.linkstore.add_link
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.applsh1205.linkstore.database.AppDatabase
@@ -9,22 +10,27 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.jsoup.Jsoup
 
-class AddLinkViewModel(url: String) : ViewModel() {
+class AddLinkViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel() {
     val link = MutableLiveData<String>("")
     val name = MutableLiveData<String>("")
     val finish = MutableLiveData<Boolean>(false)
 
     init {
-        link.value = url
-        viewModelScope.launch {
-            val linkName = withContext(Dispatchers.IO) {
-                val connection = Jsoup.connect(url)
-                connection.userAgent("Mozilla/5.0 (Linux; Android 9; Mi A2 Lite) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Mobile Safari/537.36")
-                connection.referrer("http://www.google.com/")
-                val document = connection.get()
-                document.select("meta[property=og:title]").attr("content")
+        val url = savedStateHandle.get<String>("url")
+        if (url == null) {
+            finish.value = true
+        } else {
+            link.value = url
+            viewModelScope.launch {
+                val linkName = withContext(Dispatchers.IO) {
+                    val connection = Jsoup.connect(url)
+                    connection.userAgent("Mozilla/5.0 (Linux; Android 9; Mi A2 Lite) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Mobile Safari/537.36")
+                    connection.referrer("http://www.google.com/")
+                    val document = connection.get()
+                    document.select("meta[property=og:title]").attr("content")
+                }
+                name.value = linkName
             }
-            name.value = linkName
         }
     }
 
