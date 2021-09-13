@@ -6,7 +6,9 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.applsh1205.linkstore.R
 import com.applsh1205.linkstore.databinding.ActivityListBinding
@@ -30,25 +32,33 @@ class ListActivity : AppCompatActivity() {
         binding.linkRecyclerView.layoutManager = LinearLayoutManager(this)
 
         lifecycleScope.launch {
-            viewModel.links.collect {
-                linkAdapter.submitData(it)
+            launch {
+                viewModel.links.collect {
+                    linkAdapter.submitData(it)
+                }
             }
-        }
 
-        viewModel.browserLink.observe(this) {
-            if (it.isNotEmpty()) {
-                val intent = Intent(Intent.ACTION_VIEW).setData(Uri.parse(it))
-                startActivity(intent)
-                viewModel.clearBrowserLink()
-            }
-        }
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    viewModel.browserLink.collect {
+                        if (it.isNotEmpty()) {
+                            val intent = Intent(Intent.ACTION_VIEW).setData(Uri.parse(it))
+                            startActivity(intent)
+                            viewModel.clearBrowserLink()
+                        }
+                    }
+                }
 
-        viewModel.editLink.observe(this) {
-            if (it.isNotEmpty()) {
-                val intent = Intent(this, EditLinkActivity::class.java)
-                intent.putExtra("id", it)
-                startActivity(intent)
-                viewModel.clearEditLink()
+                launch {
+                    viewModel.editLink.collect {
+                        if (it.isNotEmpty()) {
+                            val intent = Intent(this@ListActivity, EditLinkActivity::class.java)
+                            intent.putExtra("id", it)
+                            startActivity(intent)
+                            viewModel.clearEditLink()
+                        }
+                    }
+                }
             }
         }
 

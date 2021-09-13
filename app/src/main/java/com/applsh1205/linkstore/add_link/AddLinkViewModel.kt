@@ -1,19 +1,19 @@
 package com.applsh1205.linkstore.add_link
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.applsh1205.linkstore.database.AppDatabase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.jsoup.Jsoup
 
 class AddLinkViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel() {
-    val link = MutableLiveData<String>("")
-    val name = MutableLiveData<String>("")
-    val finish = MutableLiveData<Boolean>(false)
+    val link = MutableStateFlow<String>("")
+    val name = MutableStateFlow<String>("")
+    val finish = MutableStateFlow<Boolean>(false)
 
     init {
         val url = savedStateHandle.get<String>("url")

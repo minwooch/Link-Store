@@ -66,4 +66,7 @@ dependencies {
     // jsoup
     implementation "org.jsoup:jsoup:1.14.2"
 
+    // lifecycle
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha03"
+
 }

@@ -1,19 +1,19 @@
 package com.applsh1205.linkstore.link
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.*
 import com.applsh1205.linkstore.database.AppDatabase
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 
 class ListViewModel : ViewModel() {
 
-    private val _browserLink = MutableLiveData<String>("")
-    val browserLink: LiveData<String> = _browserLink
-    private val _editLink = MutableLiveData<String>("")
-    val editLink: LiveData<String> = _editLink
+    private val _browserLink = MutableStateFlow<String>("")
+    val browserLink: StateFlow<String> = _browserLink
+    private val _editLink = MutableStateFlow<String>("")
+    val editLink: StateFlow<String> = _editLink
 
     val links = Pager(
         config = PagingConfig(pageSize = 30)
