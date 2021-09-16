@@ -12,18 +12,22 @@ abstract class AppDatabase : RoomDatabase() {
 
     companion object {
 
-        private var instance: AppDatabase? = null
+        private lateinit var applicationContext: Context
 
         fun initialize(context: Context) {
-            instance = Room.databaseBuilder(
-                context.applicationContext,
+            applicationContext = context
+        }
+
+        private object Instance {
+            val instance = Room.databaseBuilder(
+                applicationContext,
                 AppDatabase::class.java,
                 "Link-DB.db"
             ).build()
         }
 
         fun getInstance(): AppDatabase {
-            return instance!!
+            return Instance.instance
         }
     }
 }
