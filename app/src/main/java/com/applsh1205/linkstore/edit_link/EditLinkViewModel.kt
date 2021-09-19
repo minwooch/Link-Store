@@ -35,9 +35,6 @@ class EditLinkViewModel(private val savedStateHandle: SavedStateHandle) : ViewMo
         val id = _linkId.value
         val url = url.value
         val name = name.value
-        if (id == null || url == null || name == null) {
-            return
-        }
 
         viewModelScope.launch {
             withContext(Dispatchers.IO) {

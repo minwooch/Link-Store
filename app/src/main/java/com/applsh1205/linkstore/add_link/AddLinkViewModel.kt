@@ -37,9 +37,6 @@ class AddLinkViewModel(private val savedStateHandle: SavedStateHandle) : ViewMod
     fun addLink() {
         val link = link.value
         val name = name.value
-        if (link == null || name == null) {
-            return
-        }
 
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
