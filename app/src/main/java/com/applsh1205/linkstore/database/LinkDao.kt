@@ -11,7 +11,7 @@ import java.util.*
 interface LinkDao {
 
     suspend fun insert(url: String, name: String, description: String) {
-        val link = Link(
+        val link = LinkEntity(
             UUID.randomUUID().toString(),
             url,
             name,
@@ -21,7 +21,7 @@ interface LinkDao {
     }
 
     suspend fun update(id: String, url: String, name: String, description: String) {
-        val link = Link(
+        val link = LinkEntity(
             id,
             url,
             name,
@@ -31,12 +31,12 @@ interface LinkDao {
     }
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(link: Link)
+    suspend fun insert(link: LinkEntity)
 
     @Query("SELECT * FROM links ORDER BY name")
-    fun getLinks(): PagingSource<Int, Link>
+    fun getLinks(): PagingSource<Int, LinkEntity>
 
     @Query("SELECT * FROM links WHERE id = :id")
-    fun getLink(id: String): Link
+    fun getLink(id: String): LinkEntity
 
 }
