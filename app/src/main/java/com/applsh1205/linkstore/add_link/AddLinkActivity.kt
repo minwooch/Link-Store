@@ -15,7 +15,9 @@ import kotlinx.coroutines.launch
 class AddLinkActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddLinkBinding
 
-    private val viewModel: AddLinkViewModel by viewModels()
+    private val viewModel: AddLinkViewModel by viewModels {
+        AddLinkViewModelFactory(this, intent.extras)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

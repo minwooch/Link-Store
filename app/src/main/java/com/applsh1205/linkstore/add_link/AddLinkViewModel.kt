@@ -3,14 +3,17 @@ package com.applsh1205.linkstore.add_link
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.applsh1205.linkstore.database.AppDatabase
+import com.applsh1205.linkstore.repository.LinkRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.jsoup.Jsoup
 
-class AddLinkViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel() {
+class AddLinkViewModel(
+    private val savedStateHandle: SavedStateHandle,
+    private val linkRepository: LinkRepository
+) : ViewModel() {
     val link = MutableStateFlow<String>("")
     val name = MutableStateFlow<String>("")
     val finish = MutableStateFlow<Boolean>(false)
@@ -40,7 +43,7 @@ class AddLinkViewModel(private val savedStateHandle: SavedStateHandle) : ViewMod
 
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                AppDatabase.getInstance().linkDao().insert(
+                linkRepository.insert(
                     link,
                     name,
                     ""
