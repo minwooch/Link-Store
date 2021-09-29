@@ -19,7 +19,9 @@ import kotlinx.coroutines.launch
 class ListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityListBinding
-    private val viewModel: ListViewModel by viewModels()
+    private val viewModel: ListViewModel by viewModels {
+        ListViewModelFactory()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
