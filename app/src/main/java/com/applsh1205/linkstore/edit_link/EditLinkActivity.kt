@@ -15,7 +15,9 @@ import kotlinx.coroutines.launch
 class EditLinkActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditLinkBinding
 
-    private val viewModel: EditLinkViewModel by viewModels()
+    private val viewModel: EditLinkViewModel by viewModels {
+        EditLinkViewModelFactory(this, intent.extras)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

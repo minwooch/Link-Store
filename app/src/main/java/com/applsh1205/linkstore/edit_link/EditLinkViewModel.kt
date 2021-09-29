@@ -3,13 +3,16 @@ package com.applsh1205.linkstore.edit_link
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.applsh1205.linkstore.database.AppDatabase
+import com.applsh1205.linkstore.repository.LinkRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class EditLinkViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel() {
+class EditLinkViewModel(
+    private val savedStateHandle: SavedStateHandle,
+    private val linkRepository: LinkRepository
+) : ViewModel() {
     private val _linkId = MutableStateFlow<String>("")
     val url = MutableStateFlow<String>("")
     val name = MutableStateFlow<String>("")
@@ -23,7 +26,7 @@ class EditLinkViewModel(private val savedStateHandle: SavedStateHandle) : ViewMo
             _linkId.value = id
             viewModelScope.launch {
                 val link = withContext(Dispatchers.IO) {
-                    AppDatabase.getInstance().linkDao().getLink(id)
+                    linkRepository.getLink(id)
                 }
                 url.value = link.url
                 name.value = link.name
@@ -38,7 +41,7 @@ class EditLinkViewModel(private val savedStateHandle: SavedStateHandle) : ViewMo
 
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                AppDatabase.getInstance().linkDao().update(
+                linkRepository.update(
                     id,
                     url,
                     name,
