@@ -5,15 +5,13 @@ import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
-import com.applsh1205.linkstore.database.AppDatabase
-import com.applsh1205.linkstore.repository.DefaultLinkRepository
+import com.applsh1205.linkstore.repository.LinkRepository
 
 class EditLinkViewModelFactory(
     owner: SavedStateRegistryOwner,
-    defaultArgs: Bundle?
+    defaultArgs: Bundle?,
+    private val linkRepository: LinkRepository
 ) : AbstractSavedStateViewModelFactory(owner, defaultArgs) {
-
-    private val linkRepository = DefaultLinkRepository(AppDatabase.getInstance().linkDao())
 
     override fun <T : ViewModel?> create(
         key: String,

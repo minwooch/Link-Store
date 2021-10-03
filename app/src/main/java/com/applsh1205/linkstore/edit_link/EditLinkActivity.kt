@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.applsh1205.linkstore.LinkApplication
 import com.applsh1205.linkstore.R
 import com.applsh1205.linkstore.databinding.ActivityEditLinkBinding
 import kotlinx.coroutines.flow.collect
@@ -16,7 +17,7 @@ class EditLinkActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditLinkBinding
 
     private val viewModel: EditLinkViewModel by viewModels {
-        EditLinkViewModelFactory(this, intent.extras)
+        (application as LinkApplication).appContainer.createEditLinkViewModelFactory(this, intent.extras)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

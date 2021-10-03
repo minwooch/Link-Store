@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.savedstate.SavedStateRegistryOwner
 import com.applsh1205.linkstore.add_link.AddLinkViewModelFactory
 import com.applsh1205.linkstore.database.AppDatabase
+import com.applsh1205.linkstore.edit_link.EditLinkViewModelFactory
 import com.applsh1205.linkstore.repository.DefaultLinkRepository
 import com.applsh1205.linkstore.repository.LinkRepository
 
@@ -28,6 +29,13 @@ class AppContainer(private val applicationContext: Context) {
         defaultArgs: Bundle?
     ): AddLinkViewModelFactory {
         return AddLinkViewModelFactory(owner, defaultArgs, linkRepository)
+    }
+
+    fun createEditLinkViewModelFactory(
+        owner: SavedStateRegistryOwner,
+        defaultArgs: Bundle?
+    ): EditLinkViewModelFactory {
+        return EditLinkViewModelFactory(owner, defaultArgs, linkRepository)
     }
 
 }
