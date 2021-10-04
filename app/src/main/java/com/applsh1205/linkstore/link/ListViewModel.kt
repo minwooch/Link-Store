@@ -9,7 +9,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 
-class ListViewModel(private val linkRepository: LinkRepository) : ViewModel() {
+class ListViewModel(
+    private val linkRepository: LinkRepository
+) : ViewModel() {
 
     private val _browserLink = MutableStateFlow<String>("")
     val browserLink: StateFlow<String> = _browserLink

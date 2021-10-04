@@ -10,6 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.applsh1205.linkstore.LinkApplication
 import com.applsh1205.linkstore.R
 import com.applsh1205.linkstore.databinding.ActivityListBinding
 import com.applsh1205.linkstore.edit_link.EditLinkActivity
@@ -20,7 +21,7 @@ class ListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityListBinding
     private val viewModel: ListViewModel by viewModels {
-        ListViewModelFactory()
+        (application as LinkApplication).appContainer.createListViewModelFactory()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
