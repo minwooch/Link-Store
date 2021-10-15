@@ -40,7 +40,7 @@ class AddLinkActivity : AppCompatActivity() {
                 launch {
                     viewModel.finish.collect {
                         if (it) {
-                            finish()
+                            finishAndRemoveTask()
                         }
                     }
                 }
