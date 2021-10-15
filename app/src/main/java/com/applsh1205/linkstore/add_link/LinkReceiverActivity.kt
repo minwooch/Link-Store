@@ -15,6 +15,8 @@ class LinkReceiverActivity : AppCompatActivity() {
             if (URLUtil.isValidUrl(url)) {
                 val intent = Intent(this, AddLinkActivity::class.java)
                 intent.putExtra("url", url)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(intent)
             } else {
                 Toast.makeText(this, R.string.invalid_url, Toast.LENGTH_SHORT).show()

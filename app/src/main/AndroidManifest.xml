@@ -26,6 +26,7 @@
             android:exported="true"
             android:launchMode="singleInstance"
             android:noHistory="true"
+            android:taskAffinity=":link_receiver_task"
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -35,8 +36,7 @@
         </activity>
         <activity
             android:name=".add_link.AddLinkActivity"
-
-            android:launchMode="singleInstance" />
+            android:taskAffinity=":add_link_task" />
 
         <activity
             android:name=".edit_link.EditLinkActivity"
