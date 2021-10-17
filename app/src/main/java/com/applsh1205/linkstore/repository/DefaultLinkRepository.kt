@@ -47,4 +47,8 @@ class DefaultLinkRepository(
             }
         }
     }
+
+    override suspend fun delete(id: String) {
+        linkDao.delete(id)
+    }
 }

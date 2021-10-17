@@ -8,4 +8,5 @@ interface LinkRepository {
     suspend fun update(id: String, url: String, name: String, description: String)
     fun getLink(id: String): Link
     fun getLinks(): Flow<PagingData<Link>>
+    suspend fun delete(id: String)
 }

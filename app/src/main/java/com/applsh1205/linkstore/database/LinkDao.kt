@@ -39,4 +39,7 @@ interface LinkDao {
     @Query("SELECT * FROM links WHERE id = :id")
     fun getLink(id: String): LinkEntity
 
+    @Query("DELETE FROM links WHERE id = :id")
+    suspend fun delete(id: String)
+
 }
