@@ -38,7 +38,9 @@
             android:name=".add_link.AddLinkActivity"
             android:taskAffinity=":add_link_task" />
 
-        <activity android:name=".edit_link.EditLinkActivity" />
+        <activity
+            android:name=".edit_link.EditLinkActivity"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
