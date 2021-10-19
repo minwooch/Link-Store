@@ -52,4 +52,16 @@ class EditLinkViewModel(
         }
 
     }
+
+    fun deleteLink() {
+        val id = _linkId.value
+
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                linkRepository.delete(id)
+            }
+            finish.value = true
+        }
+    }
+
 }

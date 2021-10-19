@@ -35,6 +35,10 @@ class EditLinkActivity : AppCompatActivity() {
             viewModel.updateLink()
         }
 
+        binding.editLinkDelete.setOnClickListener {
+            viewModel.deleteLink()
+        }
+
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
