@@ -27,11 +27,11 @@ class EditLinkActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        binding.addLinkCancel.setOnClickListener {
+        binding.editLinkCancel.setOnClickListener {
             finish()
         }
 
-        binding.addLinkDone.setOnClickListener {
+        binding.editLinkDone.setOnClickListener {
             viewModel.updateLink()
         }
 
