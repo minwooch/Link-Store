@@ -17,7 +17,10 @@ class EditLinkActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditLinkBinding
 
     private val viewModel: EditLinkViewModel by viewModels {
-        (application as LinkApplication).appContainer.createEditLinkViewModelFactory(this, intent.extras)
+        (application as LinkApplication).appComponent
+            .savedStateViewModelFactoryComponentFactory()
+            .create(this, intent.extras)
+            .editLinkViewModelFactory()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
