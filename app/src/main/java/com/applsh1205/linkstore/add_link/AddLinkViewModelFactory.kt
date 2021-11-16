@@ -6,8 +6,9 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 import com.applsh1205.linkstore.repository.LinkRepository
+import javax.inject.Inject
 
-class AddLinkViewModelFactory(
+class AddLinkViewModelFactory @Inject constructor(
     owner: SavedStateRegistryOwner,
     defaultArgs: Bundle?,
     private val linkRepository: LinkRepository

@@ -17,7 +17,10 @@ class AddLinkActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddLinkBinding
 
     private val viewModel: AddLinkViewModel by viewModels {
-        (application as LinkApplication).appContainer.createAddLinkViewModelFactory(this, intent.extras)
+        (application as LinkApplication).appComponent
+            .savedStateViewModelFactoryComponentFactory()
+            .create(this, intent.extras)
+            .addLinkViewModelFactory()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
