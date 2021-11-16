@@ -13,5 +13,7 @@ interface AppComponent {
     }
 
     fun savedStateViewModelFactoryComponentFactory(): SavedStateViewModelFactoryComponent.Factory
+    fun viewModelFactoryComponentFactory(): ViewModelFactoryComponent.Factory
+
 }
 

@@ -21,7 +21,10 @@ class ListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityListBinding
     private val viewModel: ListViewModel by viewModels {
-        (application as LinkApplication).appContainer.createListViewModelFactory()
+        (application as LinkApplication).appComponent
+            .viewModelFactoryComponentFactory()
+            .create()
+            .listViewModelFactory()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
