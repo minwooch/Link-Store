@@ -20,7 +20,7 @@ class EditLinkActivity : AppCompatActivity() {
         (application as LinkApplication).appComponent
             .savedStateViewModelFactoryComponentFactory()
             .create(this, intent.extras)
-            .editLinkViewModelFactory()
+            .savedStateViewModelFactory()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -11,8 +11,9 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.jsoup.Jsoup
+import javax.inject.Inject
 
-class AddLinkViewModel(
+class AddLinkViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val linkRepository: LinkRepository
 ) : ViewModel() {
