@@ -8,7 +8,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 
 @Module
-abstract class ViewModelModule {
+abstract class SavedStateViewModelModule {
 
     @IntoMap
     @ViewModelKey(EditLinkViewModel::class)

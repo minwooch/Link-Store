@@ -6,7 +6,7 @@ import dagger.BindsInstance
 import dagger.Subcomponent
 import javax.inject.Provider
 
-@Subcomponent(modules = [ViewModelModule::class])
+@Subcomponent(modules = [SavedStateViewModelModule::class])
 interface SavedStateViewModelComponent {
 
     @Subcomponent.Factory
