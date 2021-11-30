@@ -24,7 +24,7 @@ class ListActivity : AppCompatActivity() {
         (application as LinkApplication).appComponent
             .viewModelFactoryComponentFactory()
             .create()
-            .listViewModelFactory()
+            .viewModelFactory()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

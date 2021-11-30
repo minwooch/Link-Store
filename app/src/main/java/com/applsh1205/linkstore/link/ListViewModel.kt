@@ -8,8 +8,9 @@ import com.applsh1205.linkstore.repository.LinkRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class ListViewModel(
+class ListViewModel @Inject constructor(
     private val linkRepository: LinkRepository
 ) : ViewModel() {
 
