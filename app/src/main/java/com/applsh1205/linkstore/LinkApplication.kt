@@ -2,9 +2,11 @@ package com.applsh1205.linkstore
 
 import android.app.Application
 import com.applsh1205.linkstore.inject.AppComponent
-import com.applsh1205.linkstore.inject.DaggerAppComponent
+import dagger.hilt.android.EntryPointAccessors
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class LinkApplication : Application() {
 
-    val appComponent: AppComponent by lazy { DaggerAppComponent.factory().create(applicationContext) }
+    val appComponent: AppComponent by lazy { EntryPointAccessors.fromApplication(this, AppComponent::class.java) }
 }

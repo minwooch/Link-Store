@@ -7,10 +7,11 @@ import com.applsh1205.linkstore.repository.DefaultLinkRepository
 import com.applsh1205.linkstore.repository.LinkRepository
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 @Module
 object AppModule {
-    @AppScope
+    @Singleton
     @Provides
     fun provideAppDatabase(applicationContext: Context): AppDatabase {
         return Room.databaseBuilder(
@@ -20,7 +21,7 @@ object AppModule {
         ).build()
     }
 
-    @AppScope
+    @Singleton
     @Provides
     fun provideLinkRepository(appDatabase: AppDatabase): LinkRepository {
         return DefaultLinkRepository(appDatabase.linkDao())
