@@ -7,21 +7,22 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.applsh1205.linkstore.LinkApplication
 import com.applsh1205.linkstore.R
 import com.applsh1205.linkstore.databinding.ActivityEditLinkBinding
+import com.applsh1205.linkstore.inject.SavedStateViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class EditLinkActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditLinkBinding
 
-    private val viewModel: EditLinkViewModel by viewModels {
-        (application as LinkApplication).appComponent
-            .savedStateViewModelFactoryComponentFactory()
-            .create(this, intent.extras)
-            .savedStateViewModelFactory()
-    }
+    @Inject
+    lateinit var savedStateViewModelFactory: SavedStateViewModelFactory
+
+    private val viewModel: EditLinkViewModel by viewModels { savedStateViewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
