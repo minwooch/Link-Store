@@ -6,18 +6,12 @@ import androidx.activity.ComponentActivity
 import androidx.savedstate.SavedStateRegistryOwner
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 
 @InstallIn(ActivityComponent::class)
-@EntryPoint
-interface SavedStateViewModelEntryPoint {
-
-    fun savedStateViewModelComponentFactory(): SavedStateViewModelComponent.Factory
-
-    fun savedStateViewModelFactory(): SavedStateViewModelFactory
-}
+@Module(subcomponents = [SavedStateViewModelComponent::class])
+class SavedStateViewModelComponentModule
 
 @InstallIn(ActivityComponent::class)
 @Module
