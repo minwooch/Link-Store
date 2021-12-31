@@ -10,10 +10,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 
 @InstallIn(ActivityComponent::class)
-@Module(subcomponents = [SavedStateViewModelComponent::class])
-class SavedStateViewModelComponentModule
-
-@InstallIn(ActivityComponent::class)
 @Module
 object ActivityModule {
     @Provides
