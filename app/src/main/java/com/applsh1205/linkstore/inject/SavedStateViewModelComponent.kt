@@ -3,7 +3,6 @@ package com.applsh1205.linkstore.inject
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import dagger.BindsInstance
-import dagger.Module
 import dagger.hilt.DefineComponent
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
@@ -18,10 +17,6 @@ interface HiltSavedStateViewModelComponentBuilder {
     fun savedStateHandle(@BindsInstance savedStateHandle: SavedStateHandle): HiltSavedStateViewModelComponentBuilder
     fun build(): HiltSavedStateViewModelComponent
 }
-
-@InstallIn(HiltSavedStateViewModelComponent::class)
-@Module(includes = [SavedStateViewModelModule::class])
-class HiltSavedStateViewModelModule
 
 @InstallIn(HiltSavedStateViewModelComponent::class)
 @EntryPoint

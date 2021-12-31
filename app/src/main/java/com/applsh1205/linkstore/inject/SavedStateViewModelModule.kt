@@ -5,8 +5,10 @@ import com.applsh1205.linkstore.add_link.AddLinkViewModel
 import com.applsh1205.linkstore.edit_link.EditLinkViewModel
 import dagger.Binds
 import dagger.Module
+import dagger.hilt.InstallIn
 import dagger.multibindings.IntoMap
 
+@InstallIn(HiltSavedStateViewModelComponent::class)
 @Module
 abstract class SavedStateViewModelModule {
 
