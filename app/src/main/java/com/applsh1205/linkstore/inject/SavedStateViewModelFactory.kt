@@ -5,12 +5,13 @@ import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
+import dagger.hilt.EntryPoints
 import javax.inject.Inject
 
 class SavedStateViewModelFactory @Inject constructor(
     owner: SavedStateRegistryOwner,
     defaultArgs: Bundle?,
-    private val savedStateViewModelComponentFactory: SavedStateViewModelComponent.Factory
+    private val savedStateViewModelComponentFactory: HiltSavedStateViewModelComponentBuilder
 ) : AbstractSavedStateViewModelFactory(owner, defaultArgs) {
 
     override fun <T : ViewModel?> create(
@@ -18,8 +19,8 @@ class SavedStateViewModelFactory @Inject constructor(
         modelClass: Class<T>,
         handle: SavedStateHandle
     ): T {
-
-        val viewModelProvider = savedStateViewModelComponentFactory.create(handle)
+        val component = savedStateViewModelComponentFactory.savedStateHandle(handle).build()
+        val viewModelProvider = EntryPoints.get(component, HiltSavedStateViewModelEntryPoint::class.java)
             .viewModelMap()
             .get(modelClass) ?: throw RuntimeException("${modelClass}가 없음")
 
