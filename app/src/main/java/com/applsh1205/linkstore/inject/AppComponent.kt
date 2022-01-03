@@ -8,6 +8,4 @@ import dagger.hilt.components.SingletonComponent
 @EntryPoint
 interface AppComponent {
 
-    fun viewModelFactoryComponentFactory(): ViewModelFactoryComponent.Factory
-
 }

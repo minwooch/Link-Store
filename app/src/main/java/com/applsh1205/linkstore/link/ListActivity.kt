@@ -10,22 +10,23 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.applsh1205.linkstore.LinkApplication
 import com.applsh1205.linkstore.R
 import com.applsh1205.linkstore.databinding.ActivityListBinding
 import com.applsh1205.linkstore.edit_link.EditLinkActivity
+import com.applsh1205.linkstore.inject.ViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class ListActivity : AppCompatActivity() {
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
     private lateinit var binding: ActivityListBinding
-    private val viewModel: ListViewModel by viewModels {
-        (application as LinkApplication).appComponent
-            .viewModelFactoryComponentFactory()
-            .create()
-            .viewModelFactory()
-    }
+    private val viewModel: ListViewModel by viewModels { viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
